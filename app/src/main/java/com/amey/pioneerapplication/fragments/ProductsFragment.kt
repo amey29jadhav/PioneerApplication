@@ -1,14 +1,17 @@
-package com.amey.pioneerapplication.Fragments
+package com.amey.pioneerapplication.fragments
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
+import android.widget.Toolbar
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -18,9 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.amey.pioneerapplication.R
 import com.amey.pioneerapplication.adapters.ProductsAdapter
 import com.amey.pioneerapplication.databinding.ProductsFragmentBinding
-import com.amey.pioneerapplication.model.CategoriesModelItem
 import com.amey.pioneerapplication.model.ProductsModelItem
 import com.amey.pioneerapplication.utils.AppConstants
+import com.amey.pioneerapplication.utils.TypeFaceHelper
 import com.amey.pioneerapplication.viewmodel.ProductsViewModel
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.products_fragment.*
@@ -28,9 +31,11 @@ import kotlinx.android.synthetic.main.products_fragment.*
 class ProductsFragment : Fragment()  {
     private var mViewModel: ProductsViewModel? = null
     var horizontalScrollView: HorizontalScrollView? = null
-    lateinit var linearLayoutManager: LinearLayoutManager
-    val chipList = mutableListOf<String>()
-    var chipmap = mutableMapOf<String,Int>()
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private val chipList = mutableListOf<String>()
+    var chipmap = mutableMapOf<String?,Int>()
+    private lateinit var fontawesome: Typeface
+
 
     private var productsFragmentBinding: ProductsFragmentBinding? =
         null
@@ -43,6 +48,9 @@ class ProductsFragment : Fragment()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         registerReceiver()
+        //fontAwesomeFont = Typeface.createFromAsset(context.getAssets(), "FontAwesome.otf");
+         fontawesome = mycontext?.let { ResourcesCompat.getFont(it, R.font.fontawesome) }!!
+
 
     }
 
@@ -64,6 +72,8 @@ class ProductsFragment : Fragment()  {
         )
 
         productsFragmentBinding!!.productsRecyclerView.layoutManager = linearLayoutManager
+        productsFragmentBinding!!.producttoolbar.categoryButton.text = R.string.filter_icon.toString()
+        productsFragmentBinding!!.producttoolbar.categoryButton.typeface = fontawesome
         productsFragmentBinding!!.producttoolbar.myToolbar.setOnClickListener(View.OnClickListener {
             it.findNavController().navigate(R.id.action_productsFragment_to_categoryBottomSheetDialogFragment)
         })
@@ -103,24 +113,23 @@ class ProductsFragment : Fragment()  {
             ViewModelProviders.of(this).get(ProductsViewModel::class.java)
             getProducts("")
 
-        mViewModel!!.categories.observe(viewLifecycleOwner,Observer<List<CategoriesModelItem>>{categories->
-            AppConstants.categroylist =categories
-        })
+
         // TODO: Use the ViewModel
     }
 
     public fun getProducts( id: String?){
         mViewModel!!.init(id)
-        mViewModel!!.products.observe(viewLifecycleOwner, Observer<List<ProductsModelItem>>{ products ->
+        mViewModel!!.products?.observe(viewLifecycleOwner, Observer<List<ProductsModelItem?>> {products->
             for (x in products.indices){
-                if(!chipList.contains(products[x].subcategory)) {
-                    chipmap[products[x].subcategory] = x
-                    chipList.add(products[x].subcategory)
+                if(!chipList.contains(products[x]?.subcategory)) {
+                    chipmap[products[x]?.subcategory] = x
+                    chipmap[products[x]?.subcategory] = x
                 }
             }
             initHorizontalScrollView()
-            productsFragmentBinding!!.productsRecyclerView.adapter = ProductsAdapter(products, this)
+            productsFragmentBinding!!.productsRecyclerView.adapter = ProductsAdapter(products.requireNoNulls(), this)
         })
+
     }
 
     companion object {

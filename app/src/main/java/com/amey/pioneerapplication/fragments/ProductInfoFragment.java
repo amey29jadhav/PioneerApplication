@@ -1,4 +1,4 @@
-package com.amey.pioneerapplication.Fragments;
+package com.amey.pioneerapplication.fragments;
 
 import androidx.lifecycle.ViewModelProviders;
 

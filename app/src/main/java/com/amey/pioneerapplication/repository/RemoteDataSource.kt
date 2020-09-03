@@ -21,7 +21,7 @@ import retrofit2.Response
         }
     }
 
-    fun getCategories(customerId: String?, secretToken: String?): LiveData<List<CategoriesModelItem?>>{
+     fun getCategories(): LiveData<List<CategoriesModelItem?>>{
 
 
         val categroiesLiveData: MutableLiveData<List<CategoriesModelItem?>> by lazy {
@@ -48,7 +48,7 @@ import retrofit2.Response
         return categroiesLiveData
 
     }
-      fun getProducts(customerId: String?, secretToken: String?, categoryId: String?): LiveData<List<ProductsModelItem?>>{
+      fun getProducts(categoryId: String?): LiveData<List<ProductsModelItem?>>{
 
 
           val productsLiveData: MutableLiveData<List<ProductsModelItem?>> by lazy {

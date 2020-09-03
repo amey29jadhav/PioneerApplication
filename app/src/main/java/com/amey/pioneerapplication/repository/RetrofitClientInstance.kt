@@ -1,5 +1,6 @@
 package com.amey.pioneerapplication.repository
 
+import com.amey.pioneerapplication.utils.CoroutineCallAdapterFactory
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

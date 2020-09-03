@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".Fragments.ProductsFragment">
+    tools:context=".fragments.ProductsFragment">
    <include
        android:id="@+id/producttoolbar"
        layout="@layout/toolbar"></include>
+    <Button
+        android:id="@+id/textButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category_button_text"
+        app:strokeColor ="@color/colorPrimaryDark"
+        app:strokeWidth ="1dp"
+        android:layout_centerInParent="true"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        />
     <HorizontalScrollView
         android:id="@+id/chipHorizontalView"
+        android:layout_below="@+id/producttoolbar"
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="wrap_content">
@@ -24,7 +35,8 @@
     </HorizontalScrollView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productsRecyclerView"
+        android:layout_below="@+id/chipHorizontalView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none"></androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
+</RelativeLayout>

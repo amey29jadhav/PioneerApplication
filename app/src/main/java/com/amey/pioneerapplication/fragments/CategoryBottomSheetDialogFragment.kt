@@ -1,4 +1,4 @@
-package com.amey.pioneerapplication.Fragments
+package com.amey.pioneerapplication.fragments
 
 import android.content.Context
 import android.content.Intent

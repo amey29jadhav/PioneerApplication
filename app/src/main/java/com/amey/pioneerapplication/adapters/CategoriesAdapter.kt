@@ -1,17 +1,13 @@
 package com.amey.pioneerapplication.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.amey.pioneerapplication.Fragments.ClickCallback
+import com.amey.pioneerapplication.fragments.ClickCallback
 import com.amey.pioneerapplication.R
 import com.amey.pioneerapplication.model.CategoriesModelItem
-import com.amey.pioneerapplication.utils.AppConstants
 
 class CategoriesAdapter(private val list: List<CategoriesModelItem>, val clickCallback: ClickCallback): RecyclerView.Adapter<CategoriesAdapter.CategoryHolder>() {
     class CategoryHolder(inflater: LayoutInflater, parent: ViewGroup) : RecyclerView.ViewHolder(inflater.inflate(

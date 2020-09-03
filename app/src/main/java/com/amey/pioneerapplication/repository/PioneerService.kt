@@ -2,6 +2,7 @@ package com.amey.pioneerapplication.repository
 
 import com.amey.pioneerapplication.model.CategoriesModelItem
 import com.amey.pioneerapplication.model.ProductsModelItem
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.*
 
