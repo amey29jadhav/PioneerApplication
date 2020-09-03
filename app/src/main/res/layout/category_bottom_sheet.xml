@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/browsecategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/category_heading"
+        android:gravity="center"
+        android:padding="7dp"></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryrecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none"></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

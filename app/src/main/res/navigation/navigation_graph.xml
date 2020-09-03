@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/productsFragment">
+
+    <fragment
+        android:id="@+id/productInfoFragment"
+        android:name="com.amey.pioneerapplication.Fragments.ProductInfoFragment"
+        android:label="fragment_product_info"
+        tools:layout="@layout/fragment_product_info" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.amey.pioneerapplication.Fragments.ProductsFragment"
+        android:label="products_fragment"
+        tools:layout="@layout/products_fragment" >
+        <action
+            android:id="@+id/action_productsFragment_to_productInfoFragment"
+            app:destination="@id/productInfoFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_categoryBottomSheetDialogFragment"
+            app:destination="@id/categoryBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/categoryBottomSheetDialogFragment"
+        android:name="com.amey.pioneerapplication.Fragments.CategoryBottomSheetDialogFragment"
+        android:label="CategoryBottomSheetDialogFragment" />
+</navigation>
